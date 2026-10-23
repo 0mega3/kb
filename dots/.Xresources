@@ -1,0 +1,189 @@
+/* Syntax
+Configuration options in the ~/.Xresources file should respect
+the following component syntax:
+name.Class.resource: value
+Note: In many options the Class component is not used. */
+
+/* URxvt */
+! -*- General settings -*-
+URxvt.saveLines:       2000
+URxvt.scrollBar:       false
+URxvt.scrollBar_right: false
+URxvt.scrollstyle:     rxvt
+URxvt.termName:        xterm-256color
+URxvt.urgentOnBell:    true
+URxvt.cursorBlink:     true
+URxvt.cursorUnderline: false
+! URxvt.iconFile:        /usr/share/icons/Tango/scalable/apps/terminal.svg
+
+! For the Ctrl+Shift bindings to work, a default binding needs to be disabled.
+URxvt.iso14755:    false
+URxvt.iso14755_52: false
+
+! -*- Perl extensions -*-
+! fullscreen (no need for i3).
+URxvt.perl-ext-common: selection-to-clipboard,matcher,resize-font
+
+! URxvt.perl-lib: /home/jihad/.config/urxvt/perl
+
+! Clickable URLs
+URxvt.url-launcher:   /usr/bin/xdg-open
+URxvt.underlineURLs:  true
+URxvt.matcher.button: 1
+
+! -*- Keybindings -*-
+! Fullscreen mode
+! Dependencies: the wmctrl program is a UNIX/Linux command line tool
+! to interact with an EWMH/NetWM compatible X Window Manager.
+URxvt.keysym.F11: perl:fullscreen:switch
+
+! Changing font size on the fly
+URxvt.keysym.C-minus:    resize-font:smaller
+URxvt.keysym.C-plus:     resize-font:bigger
+URxvt.keysym.C-equal:    resize-font:reset
+URxvt.keysym.C-question: resize-font:show
+URxvt.resize-font.step:  2
+
+! Xterm escapes
+! Line by line scrolling
+URxvt.keysym.Control-Up:     \033[1;5A
+URxvt.keysym.Control-Down:   \033[1;5B
+! Word by word movement
+URxvt.keysym.Control-Left:   \033[1;5D
+URxvt.keysym.Control-Right:  \033[1;5C
+
+! -*- Fonts -*-
+! Meslo Nerd Font patched for Powerlevel10k
+! URxvt.font:        xft:MesloLGS Nerd Font Mono:size=11
+URxvt.font:        xft:AnonymicePro Nerd Font Mono:size=11, xft:MesloLGS Nerd Font Mono:size=11
+URxvt.letterSpace: 0
+
+/* -*- Transparency -*-
+Alpha channel support
+You can prefix any colour with an opaqueness percentage enclosed in brackets,
+i.e.[percent], where percent is a decimal percentage (0-100)
+that specifies the opacity of the colour, where 0 is completely transparent and
+100 is completely opaque.
+For complete control, rxvt-unicode also supports rgba:rrrr/gggg/bbbb/aaaa
+(exactly four hex digits/component) colour specifications,
+where the additional aaaa component specifies opacity (alpha) values.
+The minimum value of 0000 is completely transparent, while ffff is completely opaque).
+You probably need to specify "-depth 32", too, to force a visual with alpha channels.
+
+RGBA representation
+RGB24
+In cases where the alpha is not used this can be shortened to 6 digits RRGGBB.
+ARGB32(Big-endian:ARGB8888) 2^8 = 256
+ARGB values are typically expressed using 8 hexadecimal digits AARRGGBB.
+(0%-100%, 0-255, 0-255, 0-255)
+RGBA32(Big-endian:RGBA8888)
+RGBA values are typically expressed using 8 hexadecimal digits RRGGBBAA.
+In many systems when there are more than 8 bits per channel
+(such as 16 bits or floating-point), the channels are stored in RGBA order,
+even if 8-bit channels are stored in some other order.
+RGBA64(Big-endian:RGBA16161616) 2^16 or 256 * 256 = 65536
+RGBA values are typically expressed using 16 hexadecimal digits RRRRGGGGBBBBAAAA.
+rgba:rrrr/gggg/bbbb/aaaa
+To use a color i.e. #302351 with the rgba:rrrr/gggg/bbbb/aaaa
+syntax it would be rgba:3000/2300/5100/ee00.
+"ee00" (the alpha value) to make it nicely transparent.
+
+Hexadecimal color code for transparency
+One percent step for the alpha channel for ARGB32 = 2.56 and RGBA64 = 655.36
+Alpha  ARGB32 RGBA64
+100% ~ FF   ~ FFFF
+ 90% ~ E6   ~ E666
+ 80% ~ CD   ~ CCCD
+ 70% ~ B3   ~ B333
+ 60% ~ 9A   ~ 999A
+ 50% ~ 80   ~ 8000
+ 40% ~ 66   ~ 6666
+ 30% ~ 4D   ~ 4CCD
+ 20% ~ 33   ~ 3333
+ 10% ~ 1A   ~ 199A
+  1% ~ 03   ~ 028F */
+
+! True transparency
+! To use true transparency, you need to be using a window manager
+! that supports compositing or a separate compositor.
+! Note: To make these settings universal for all forms of URxvt,
+! you may add a wildcard.
+! For example, URxvt.depth would become URxvt*depth.
+URxvt.depth:      32
+URxvt.background: [90]#002b36
+
+! Native transparency, that copies the wallpaper to the background of the terminal.
+! (more exactly, the contents of Xorg`s root window)
+URxvt*inheritPixmap: true
+URxvt*transparent:   true
+! URxvt*shading: 0 to 99 darkens, 101 to 200 lightens
+! Using the URxvt*background setting exemplified above instead of URxvt*shading will also work.
+! Note: Avoid using shading if you have a URxvt.tintColor set.
+! Use a different tintColor instead.
+URxvt*shading: 20
+URxvt.blurRadius: 0
+! Note: if you enable the two, the native transparency takes the precedence
+! over the true transparency.
+
+! Base16 Solarized
+! Scheme: Ethan Schoonover (http://ethanschoonover.com/solarized)
+
+URxvt*background:                     #002b36
+URxvt*foreground:                     #93a1a1
+URxvt*cursorColor:                    #93a1a1
+
+URxvt*scrollColor:                    #93a1a1
+URxvt*highlightColor:                 #586e75
+URxvt*highlightTextColor:             #839496
+
+URxvt*color0:                         #002b36
+URxvt*color1:                         #dc322f
+URxvt*color2:                         #859900
+URxvt*color3:                         #b58900
+URxvt*color4:                         #268bd2
+URxvt*color5:                         #6c71c4
+URxvt*color6:                         #2aa198
+URxvt*color7:                         #93a1a1
+URxvt*color8:                         #657b83
+URxvt*color9:                         #dc322f
+URxvt*color10:                        #859900
+URxvt*color11:                        #b58900
+URxvt*color12:                        #268bd2
+URxvt*color13:                        #6c71c4
+URxvt*color14:                        #2aa198
+URxvt*color15:                        #fdf6e3
+
+URxvt*color16:                        #cb4b16
+URxvt*color17:                        #d33682
+URxvt*color18:                        #073642
+URxvt*color19:                        #586e75
+URxvt*color20:                        #839496
+URxvt*color21:                        #eee8d5
+
+! -*- Rendering settings -*-
+!
+! See https://keithp.com/~keithp/talks/xtc2001/paper/.
+!
+! Used to convert point size into pixel size.
+! For Xft.dpi, using integer multiples of 96 usually works best,
+! e.g. 192 for 200% scaling.
+Xft.dpi:       96
+! Selects whether glyphs are anti-aliased.
+! The most obvious way to speed it up is to avoid Xft entirely,
+! as it is simply slow. If you still want Xft fonts you might
+! try to disable antialiasing (by appending :antialias=false),
+! which saves lots of memory and also speeds up rendering considerably.
+Xft.antialias: false
+! Specifies sub-pixel order on LCD screens (none, rgb, bgr, vrgb or vbgr).
+Xft.rgba:      rgb
+! Hinting – otherwise known as grid-fitting.
+Xft.hinting:   true
+! Degrees of hinting (hintnone, hintslight, hintmedium, or hintfull).
+Xft.hintstyle: hintslight
+! The autohinter is disabled by default.
+Xft.autohint:  false
+! Subpixel rendering LCD filters (lcdnone lcddefault lcdlight lcdlegacy).
+! Arch Linux enables ClearType subpixel rendering by default, starting
+! from FreeType 2.10.3. An LCD filter is recommended when ClearType
+! subpixel rendering is enabled.
+Xft.lcdfilter: lcddefault
